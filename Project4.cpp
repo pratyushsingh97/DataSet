@@ -144,6 +144,24 @@ void insertSet(Set* self, int x) {
  * is almost definitely NOT worth the trouble
  */
 void removeSet(Set* self, int x) {
+    bool isMember = isMemberSet(self, x);
+    if(isMember) {
+
+        int i = 0;
+        int j = 0;
+        while(i < self->len) {
+            if(self->elements[i] != x) {
+                self->elements[j] = self->elements[i];
+                i++;
+                j++;
+            }
+            else {
+                i++;
+            }
+        }
+
+        self->len = self->len - 1;
+}
 
 }
 

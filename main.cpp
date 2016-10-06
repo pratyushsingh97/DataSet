@@ -65,6 +65,13 @@ void visualTests() {
 	
 	showOutput("The set should be {0, ..., 9}:  ", &s);
 
+	removeSet(&s, 4);
+	showOutput("The set should be {0, ..., 9}:  ", &s);
+
+	removeSet(&s, 12);
+	showOutput("The set should be {0, ..., 9}:  ", &s);
+
+
 	// test Insert() and Contains() with '<<'
 	for (i = 0; i < 10; i += 1) {
 		insertSet(&s, i);
