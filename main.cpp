@@ -19,11 +19,11 @@ void testTime(void);
 
 int main (void) {
 	visualTests();
-	/*equalityTests();
+	equalityTests();
 	specialCaseTests();
 	relationalTests();
 	algebraicTests();
-	testTime();*/
+	testTime();
 	printf("The tests are over\n"); 
 }
 
@@ -58,7 +58,7 @@ void visualTests() {
 	}
 	showOutput("The set should be {0, ..., 9}:  ", &s);
 
-	for (int i = 0; i <= 12; i+=3)
+	for (int i = 0; i <= 12; i++)
 	{
 		insertSet(&t, i);
 	}
@@ -74,15 +74,18 @@ void visualTests() {
 	subtractFromSet(&t, &s);
 	showOutput("The subtraction of s and t is:       ", &t);
 
-	removeSet(&s, 4);
+	//bool subset = isSubsetOf(&s, &t);
+
+
+	/*removeSet(&s, 4);
 	showOutput("The set should be {0, ..., 9}:  ", &s);
 
 	removeSet(&s, 12);
-	showOutput("The set should be {0, ..., 9}:  ", &s);
+	showOutput("The set should be {0, ..., 9}:  ", &s);*/
 
 
 	// test Insert() and Contains() with '<<'
-	for (i = 0; i < 10; i += 1) {
+	/*for (i = 0; i < 10; i += 1) {
 		insertSet(&s, i);
 	}
 	showOutput("The set should be {0, ..., 9}:  ", &s);
@@ -93,7 +96,7 @@ void visualTests() {
 	randomSet(&t);
 	showOutput("The random set generated equals = ", &t);
 
-	printf("The visual tests are over\n"); 
+	printf("The visual tests are over\n"); */
 	destroySet(&s);
 	destroySet(&t);
 }

@@ -107,25 +107,29 @@ void insertSet(Set* self, int x) {
     //if not, then add element x to set
     if(!valid) {
         Set newSet;
-        newSet.elements = (int*) malloc(self->len * sizeof(int) + 1);
+        newSet.elements = (int*) malloc((self->len + 1) * sizeof(int));
         newSet.len = self->len + 1;
+        //int* element = (int*) malloc((self->len + 1) * sizeof(int));
 
         //copy elements from self to newSet
         for(int i = 0; i < self->len; i++) {
             newSet.elements[i] = self->elements[i];
         }
 
-        newSet.elements[newSet.len -1] = x;
+        newSet.elements[newSet.len-1] = x;
 
         //sort
         for(int i = newSet.len - 1; i >= 0; i--) {
             if(newSet.elements[i] < newSet.elements[i-1]) {
-                int temp = newSet.elements[i-1];
-                newSet.elements[i-1] = newSet.elements[i];
-                newSet.elements[i] = temp;
+                if(i != 0) {
+                    int temp = newSet.elements[i-1];
+                    newSet.elements[i-1] = newSet.elements[i];
+                    newSet.elements[i] = temp;
+                  }  
+                
             }
         }
-            assignSet(self, &newSet);
+            createCopySet(self, &newSet);
             destroySet(&newSet);
                 
         }
@@ -186,14 +190,49 @@ void displaySet(const Set* self) {
 
 /* return true if self and other have exactly the same elements */
 bool isEqualToSet(const Set* self, const Set* other) {
+
+    if(self->len != other->len) {
+        return false;
+    }
+
+    for (int i = 0; i < self->len; i++)
+    {
+        if(self->elements[i] != other->elements[i]) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /* return true if every element of self is also an element of other */
 bool isSubsetOf(const Set* self, const Set* other) {
     int i = 0;
     int j = 0;
+    int count = 0;
 
-    
+    while(i < self->len && j < other->len) {
+        if(self->elements[i] < other->elements[j]) {
+            i++;
+            
+        }
+        else if(other->elements[j] < self->elements[i]) {
+            j++;
+            
+        }
+        else if(self->elements[i] == other->elements[j]) {
+            i++;
+            j++;
+            count++;
+        }
+        
+    }
+
+    if(count == self->len) {
+        return true;
+    }
+
+    return false;
 
 }
 
@@ -204,7 +243,6 @@ bool isEmptySet(const Set* self) {
 
 /* remove all elements from self that are not also elements of other */
 void intersectFromSet(Set* self, const Set* other) {
-
     int i = 0;
     int j = 0;
     int k = 0;
