@@ -191,6 +191,11 @@ bool isEqualToSet(const Set* self, const Set* other) {
 
 /* return true if every element of self is also an element of other */
 bool isSubsetOf(const Set* self, const Set* other) {
+    int i = 0;
+    int j = 0;
+
+    
+
 }
 
 /* done for you */
@@ -208,4 +213,48 @@ void subtractFromSet(Set* self, const Set* other) {
 
 /* add all elements of other to self (obviously, without creating duplicate elements) */
 void unionInSet(Set* self, const Set* other) {
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Set newSet;
+    newSet.elements = (int*) malloc((self->len + other->len) * sizeof(int));
+
+    while(i < self->len && j < other->len) {
+        if(self->elements[i] < other->elements[j]) {
+            newSet.elements[k] = self->elements[i];
+            i++;
+            
+        }
+        else if(other->elements[j] < self->elements[i]) {
+            newSet.elements[k] = other->elements[j];
+            j++;
+            
+        }
+        else if(self->elements[i] == other->elements[j]) {
+            newSet.elements[k] = other->elements[j];
+            i++;
+            j++;
+            
+        }
+        k++;
+    }
+
+    while(i < self->len) {
+        newSet.elements[k] = self->elements[i];
+        i++;
+        k++;
+    }
+
+    while(j < other->len) {
+        newSet.elements[k] = other->elements[j];
+        j++;
+        k++;
+    }
+
+    newSet.len = k;
+
+    assignSet(self, &newSet);
+    destroySet(&newSet);
+
 }

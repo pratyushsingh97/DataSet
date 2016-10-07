@@ -60,10 +60,13 @@ void visualTests() {
 
 	for (int i = 0; i <= 12; i+=3)
 	{
-		insertSet(&s, i);
+		insertSet(&t, i);
 	}
 	
-	showOutput("The set should be {0, ..., 9}:  ", &s);
+	showOutput("The set should be {0, ..., 9}:  ", &t);
+
+	unionInSet(&s, &t);
+	showOutput("The union of s and t is:  ", &s);
 
 	removeSet(&s, 4);
 	showOutput("The set should be {0, ..., 9}:  ", &s);
