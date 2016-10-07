@@ -146,7 +146,6 @@ void insertSet(Set* self, int x) {
 void removeSet(Set* self, int x) {
     bool isMember = isMemberSet(self, x);
     if(isMember) {
-
         int i = 0;
         int j = 0;
         while(i < self->len) {
@@ -205,10 +204,75 @@ bool isEmptySet(const Set* self) {
 
 /* remove all elements from self that are not also elements of other */
 void intersectFromSet(Set* self, const Set* other) {
+
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Set newSet;
+    newSet.elements = (int*) malloc((self->len + other->len) * sizeof(int));
+
+    while(i < self->len && j < other->len) {
+        if(self->elements[i] < other->elements[j]) {
+            i++;
+            
+        }
+        else if(other->elements[j] < self->elements[i]) {
+            j++;
+            
+        }
+        else if(self->elements[i] == other->elements[j]) {
+            newSet.elements[k] = other->elements[j];
+            i++;
+            j++;
+            k++;
+        }
+        
+    }
+
+    newSet.len = k;
+    assignSet(self, &newSet);
+    destroySet(&newSet);
+
+
 }
 
 /* remove all elements from self that are also elements of other */
 void subtractFromSet(Set* self, const Set* other) {
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Set newSet;
+    newSet.elements = (int*) malloc((self->len + other->len) * sizeof(int));
+
+    while(i < self->len && j < other->len) {
+        if(self->elements[i] < other->elements[j]) {
+            newSet.elements[k] = self->elements[i];
+            i++;
+            k++;
+        }
+        else if(other->elements[j] < self->elements[i]) {
+            j++;
+            
+        }
+        else if(self->elements[i] == other->elements[j]) {
+            i++;
+            j++;
+        }
+        
+    }
+
+    while(i < self->len) {
+        newSet.elements[k] = self->elements[i];
+        i++;
+        k++;
+    }
+
+    newSet.len = k;
+    assignSet(self, &newSet);
+    destroySet(&newSet);
+
 }
 
 /* add all elements of other to self (obviously, without creating duplicate elements) */

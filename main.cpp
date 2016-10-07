@@ -65,8 +65,14 @@ void visualTests() {
 	
 	showOutput("The set should be {0, ..., 9}:  ", &t);
 
-	unionInSet(&s, &t);
-	showOutput("The union of s and t is:  ", &s);
+	/*unionInSet(&s, &t);
+	showOutput("The union of s and t is:  ", &s);*/
+
+	/*intersectFromSet(&s, &t);
+	showOutput("The intersect of s and t is:  ", &s);*/
+
+	subtractFromSet(&t, &s);
+	showOutput("The subtraction of s and t is:       ", &t);
 
 	removeSet(&s, 4);
 	showOutput("The set should be {0, ..., 9}:  ", &s);
