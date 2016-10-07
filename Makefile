@@ -26,7 +26,7 @@ PROGRAM = proj5
 #CXXSRCS = Source.cpp
 
 CXXSRCS = $(shell ls *.cpp)
-          
+              
 
 SRCS = $(CXXSRCS) 
 
