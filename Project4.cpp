@@ -14,25 +14,6 @@
 
 int newSet_length= 0;
 
-/*
- * Several of the required functions have been written already
- * You may use these functions as-is or you may modify them in any way. 
- * Please NOTE, you are responsible for ensuring that the functions work correctly in 
- * your project solution. Just because the function works correctly in my solution does 
- * NOT mean that the function will work correctly in yours. 
- */
-
-/*
- * Design NOTES:
- *
- * The design provided in this starter kit assumes
- * (1) empty sets will be represented with length == 0 and elements == nullptr (i.e., address 0)
- * (2) amortized doubling is not used, and capacity is ignored/unused. Functions should assume that 
- * the amount of storage available in the elements[] array is equal to length
- */
-
-
-
 void destroySet(Set* self) {
 	free(self->elements);
 }
