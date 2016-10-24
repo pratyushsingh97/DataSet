@@ -1,8 +1,8 @@
 /*
  * Project4.c 
  *
- * My Name
- * My Section Time
+ * Pratyush Singh
+ * EE312-Ka Tai
  *
  *
  */
@@ -33,25 +33,24 @@ int newSet_length= 0;
 
 
 
-/* done for you already */
 void destroySet(Set* self) {
 	free(self->elements);
 }
 
-/* done for you already */
+
 void createEmptySet(Set* self) {
 	self->len = 0;
 	self->elements = 0;
 }
 
-/* done for you already */
+
 void createSingletonSet(Set* self, int x) {
 	self->elements = (int*) malloc(sizeof(int));
 	self->elements[0] = x;
 	self->len = 1;
 }
 
-/* done for you already */
+
 void createCopySet(Set* self, const Set* other) {
 	self->elements = (int*) malloc(other->len * sizeof(int));
 	for (int k = 0; k < other->len; k += 1) {
@@ -60,7 +59,7 @@ void createCopySet(Set* self, const Set* other) {
 	self->len = other->len;	
 }
 
-/* done for you already */
+
 void assignSet(Set* self, const Set* other) {
 	if (self == other) { return; }
 	destroySet(self);
@@ -137,16 +136,7 @@ void insertSet(Set* self, int x) {
 }
 
 
-/*
- * don't forget: it is OK to try to remove an element
- * that is NOT in the set.  
- * If 'x' is not in the set 'self', then
- * removeSet should do nothing (it's not an error)
- * Otherwise, ('x' IS in the set), remove x. Be sure to update self->length
- * It is not necessary (nor recommended) to call malloc -- if removing an element means the 
- * array on the heap is "too big", that's almost certainly OK, and reallocating a smaller array 
- * is almost definitely NOT worth the trouble
- */
+/*remove an element if it is in the set, if not then do nothing */
 void removeSet(Set* self, int x) {
     bool isMember = isMemberSet(self, x);
     if(isMember) {
@@ -168,7 +158,7 @@ void removeSet(Set* self, int x) {
 
 }
 
-/* done for you already */
+
 void displaySet(const Set* self) {
 	int k;
 	
@@ -236,7 +226,7 @@ bool isSubsetOf(const Set* self, const Set* other) {
 
 }
 
-/* done for you */
+
 bool isEmptySet(const Set* self) {
 	return self->len == 0;
 }
